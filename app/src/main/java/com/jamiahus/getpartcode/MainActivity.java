@@ -1,6 +1,7 @@
 package com.jamiahus.getpartcode;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
@@ -46,8 +49,9 @@ public class MainActivity extends Activity {
                         .setBarcodeFormats(Barcode.DATA_MATRIX | Barcode.QR_CODE)
                         .build();
         if(!detector.isOperational()){
-            txtView.setText("Could not set up the detector!");
-            return;
+            //txtView.setText("Could not set up the detector!");
+            Toast.makeText(this, "Could not set up the detector!", Toast.LENGTH_SHORT).show();
+            //return;
         }
     }
 }
