@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">GetPartCode</string>
+    <string name="instruction_text">Click to Find Get Code</string>
+    <string name="Text_for_find_code_button">Start!</string>
+    <string name="title_activity_show_results">ShowResultsActivity</string>
+</resources>
