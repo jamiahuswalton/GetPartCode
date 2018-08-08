@@ -1,6 +1,7 @@
 package com.jamiahus.getpartcode;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
@@ -32,6 +33,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     ImageView myImage;
+    Bitmap imageBitmap;
     TextView showResults;
 
     @Override
@@ -39,7 +41,19 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Get the intent that created started this activity
+        Intent intentThatStartedActivity = getIntent();
+        //Get the bundle of extras
+        Bundle intentBundle = intentThatStartedActivity.getExtras();
+        //Get image data
+        imageBitmap = (Bitmap) intentBundle.get(CaptureImageActivity.UPLOAD_IMAGE_EXTRA_NAME);
+
+
+
         myImage = findViewById(R.id.myImage);
+        //Set display as uploaded image
+        myImage.setImageBitmap(imageBitmap);
+        //Find show results text view
         showResults = findViewById(R.id.show_results);
 
         FirebaseApp.initializeApp(this);
@@ -58,15 +72,17 @@ public class MainActivity extends Activity {
 
         //Code Recieved from https://firebase.google.com/docs/ml-kit/android/read-barcodes?authuser=0
 
+        /*
         Bitmap myBitmap = BitmapFactory.decodeResource(
                 getApplicationContext().getResources(),
                 R.drawable.longercode);
-        myImage.setImageBitmap(myBitmap);
+        */
+        myImage.setImageBitmap(imageBitmap);
 
         //Log.d("Bitmap", "BarcodeStuff: " + (myBitmap == null));
         //myImage.setImageBitmap(myBitmap);
 
-        FirebaseVisionImage myImage = FirebaseVisionImage.fromBitmap(myBitmap);
+        FirebaseVisionImage myImage = FirebaseVisionImage.fromBitmap(imageBitmap);
 
         FirebaseVisionBarcodeDetector detector = FirebaseVision.getInstance().getVisionBarcodeDetector();
 

@@ -5,17 +5,22 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.app.Activity;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class CaptureImageActivity extends Activity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    ImageView displayImage;
+    private ImageView displayImage;
+    Bitmap imageBitmap;
 
-    Button takePhoto;
-    Button scanPhoto;
+    private Button takePhoto;
+    private Button scanPhoto;
+
+    public static final String UPLOAD_IMAGE_EXTRA_NAME = "UploadImage";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +42,20 @@ public class CaptureImageActivity extends Activity {
         scanPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Send to Activity to scan photo
+                Log.d("Null", "onClick: " + isImageNull(imageBitmap));
+                //Make sure the image is not null
+                if (!isImageNull(imageBitmap)){
+                    //Send to Activity to scan photo
+                    Intent startQRCodeActivity = new Intent(getApplicationContext(),MainActivity.class);
+                    startQRCodeActivity.putExtra(UPLOAD_IMAGE_EXTRA_NAME, imageBitmap);
+
+                    //Start activity
+                    startActivity(startQRCodeActivity);
+                } else {
+                    String message = "Image did not load correctly, please try taking another photo.";
+                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG);
+                }
+
             }
         });
     }
@@ -54,8 +72,16 @@ public class CaptureImageActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = (Bitmap) extras.get("data");
+            if (isImageNull(imageBitmap)){
+                String message = "Image did not load correctly, please try taking another photo.";
+                Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG);
+            }
             displayImage.setImageBitmap(imageBitmap);
         }
+    }
+
+    private boolean isImageNull(Bitmap imageToCheck){
+        return imageToCheck == null;
     }
 }
