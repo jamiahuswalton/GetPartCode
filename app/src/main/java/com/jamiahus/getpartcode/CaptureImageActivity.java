@@ -5,12 +5,17 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.app.Activity;
 import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class CaptureImageActivity extends Activity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView displayImage;
+
+    Button takePhoto;
+    Button scanPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +24,25 @@ public class CaptureImageActivity extends Activity {
 
         displayImage = findViewById(R.id.imageView_Captured_Image);
 
-        //Get an image
-        dispatchTakePictureIntent();
+        takePhoto = findViewById(R.id.button_takePhoto);
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Get an image
+                getPhotoWithQRCode();
+            }
+        });
+
+        scanPhoto = findViewById(R.id.button_scanPhoto);
+        scanPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Send to Activity to scan photo
+            }
+        });
     }
 
-    private void dispatchTakePictureIntent() {
+    private void getPhotoWithQRCode() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);

@@ -3,4 +3,8 @@
     <!--Start Screen Dimensions-->
     <dimen name="textSize_StartScreen_textView_Welcome">40sp</dimen>
     <dimen name="textSize_StartScreen_button_Start_QR_Code_Procees">20sp</dimen>
+
+    <!--Capture Image Dimensions-->
+    <dimen name="textSize_CaptureImage_TextView">40sp</dimen>
+    <dimen name="textSize_CaptureImage_Buttons">20sp</dimen>
 </resources>

@@ -9,14 +9,14 @@
     tools:context=".CaptureImageActivity">
 
 
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_captureImageInstructions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="TextView"
         android:contentDescription="This is instruction text"
+        android:text="@string/textView_CaptureImage_Instructions"
+        android:textSize="@dimen/textSize_CaptureImage_TextView"
         tools:layout_editor_absoluteX="181dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -34,18 +34,20 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_takePhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="Button" />
+            android:text="@string/button_CaptureImage_Take_Photo_displaytext"
+            android:textSize="@dimen/textSize_CaptureImage_Buttons" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_scanPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="Button" />
+            android:text="@string/button_CaptureImage_Scan_Photo_displaytext"
+            android:textSize="@dimen/textSize_CaptureImage_Buttons" />
 
     </LinearLayout>
 
