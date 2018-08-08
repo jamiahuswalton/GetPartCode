@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="100"
     tools:context=".StartScreenActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView_Welcome"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="90"
+        android:gravity="center"
+        android:text="@string/textView_StartScreenActivity_Welcome"
+        android:textSize="@dimen/textSize_StartScreen_textView_Welcome" />
+
+    <Button
+        android:id="@+id/button_startQrScan"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="@string/button_StartScreenActivity_Start_QR_Code_Activity"
+        android:textSize="@dimen/textSize_StartScreen_button_Start_QR_Code_Procees" />
+</LinearLayout>

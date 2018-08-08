@@ -52,8 +52,6 @@ public class MainActivity extends Activity {
                 BarcodeStuff();
             }
         });
-
-
     }
 
     private void BarcodeStuff (){
