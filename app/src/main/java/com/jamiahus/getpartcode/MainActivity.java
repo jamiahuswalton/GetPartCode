@@ -80,9 +80,6 @@ public class MainActivity extends Activity {
         Task<List<FirebaseVisionBarcode>> result = detector.detectInImage(myImage).addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
             @Override
             public void onSuccess(List<FirebaseVisionBarcode> firebaseVisionBarcodes) {
-                Toast.makeText(getApplicationContext(),"Task Completed",Toast.LENGTH_LONG).show();
-
-                Log.d("Value", "Value Type: " + firebaseVisionBarcodes);
                 if (firebaseVisionBarcodes.isEmpty()){
                     //This means a barcode or a QR code was not detected
                     String message = "Barcode not detected. Please try a different image.";
@@ -92,7 +89,8 @@ public class MainActivity extends Activity {
                             Toast.LENGTH_LONG).show();
                 }
                 for (FirebaseVisionBarcode barcode: firebaseVisionBarcodes) {
-                                        int valueType = barcode.getValueType();
+
+                    int valueType = barcode.getValueType();
                     // See API reference for complete list of supported types
 
                     switch (valueType) {

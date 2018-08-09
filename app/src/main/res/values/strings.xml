@@ -1,7 +1,7 @@
 <resources>
-    <!--Text for Main Activity-->
     <string name="app_name">GetPartCode</string>
-    <string name="instruction_text">Click to Find Get Code</string>
+    <!--Text for Main Activity-->
+    <string name="instruction_text">Click to Extract Coede Information</string>
     <string name="title_activity_start_screen">StartScreenActivity</string>
     <string name="button_mainActivity_scan_text">Scan</string>
 
