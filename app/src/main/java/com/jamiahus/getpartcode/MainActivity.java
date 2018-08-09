@@ -2,17 +2,12 @@ package com.jamiahus.getpartcode;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,9 +27,11 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    ImageView myImage;
-    Bitmap imageBitmap;
-    TextView showResults;
+    private ImageView myImage;
+    private Bitmap imageBitmap;
+    private TextView showResults;
+
+    Button buttonStartScan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +42,13 @@ public class MainActivity extends Activity {
         Intent intentThatStartedActivity = getIntent();
         //Get the bundle of extras
         Bundle intentBundle = intentThatStartedActivity.getExtras();
+        assert intentBundle != null;
         //Get image data
         imageBitmap = (Bitmap) intentBundle.get(CaptureImageActivity.UPLOAD_IMAGE_EXTRA_NAME);
-
-
+        if (imageBitmap == null) {
+            String message = "Image was not received. Please retake image.";
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
 
         myImage = findViewById(R.id.myImage);
         //Set display as uploaded image
@@ -58,8 +58,8 @@ public class MainActivity extends Activity {
 
         FirebaseApp.initializeApp(this);
 
-        Button myButton = findViewById(R.id.start_scann);
-        myButton.setOnClickListener(new View.OnClickListener() {
+        buttonStartScan = findViewById(R.id.start_scann);
+        buttonStartScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -70,17 +70,8 @@ public class MainActivity extends Activity {
 
     private void BarcodeStuff (){
 
-        //Code Recieved from https://firebase.google.com/docs/ml-kit/android/read-barcodes?authuser=0
-
-        /*
-        Bitmap myBitmap = BitmapFactory.decodeResource(
-                getApplicationContext().getResources(),
-                R.drawable.longercode);
-        */
+        //Structure of Code Recieved from https://firebase.google.com/docs/ml-kit/android/read-barcodes?authuser=0
         myImage.setImageBitmap(imageBitmap);
-
-        //Log.d("Bitmap", "BarcodeStuff: " + (myBitmap == null));
-        //myImage.setImageBitmap(myBitmap);
 
         FirebaseVisionImage myImage = FirebaseVisionImage.fromBitmap(imageBitmap);
 
@@ -101,26 +92,20 @@ public class MainActivity extends Activity {
                             Toast.LENGTH_LONG).show();
                 }
                 for (FirebaseVisionBarcode barcode: firebaseVisionBarcodes) {
-                    Rect bounds = barcode.getBoundingBox();
-                    Point[] corners = barcode.getCornerPoints();
-
-                    String rawValue = barcode.getRawValue();
-
-                    int valueType = barcode.getValueType();
+                                        int valueType = barcode.getValueType();
                     // See API reference for complete list of supported types
 
-                    //Log.d("Value", "Value Type: " + valueType);
-                    //Log.d("Value", "Text Value (Should be 7): " + FirebaseVisionBarcode.TYPE_TEXT);
                     switch (valueType) {
                         case FirebaseVisionBarcode.TYPE_TEXT:
                             String QrValue = barcode.getDisplayValue();
-                            //Log.d("Value (Type Text)", "Text Value: " + QrValue);
-                            showResults.setText("QR Value: " + QrValue);
+                            String displayText = "QR Value: " + QrValue;
+                            showResults.setText(displayText);
                             break;
                         default:
+                            String message = "Code Unknown or not supproted. Please try again";
                             Toast.makeText(getApplicationContext(),
-                                    "Code Unknown or not supproted. Please try again",
-                                    Toast.LENGTH_LONG);
+                                    message,
+                                    Toast.LENGTH_LONG).show();
                     }
                 }
             }

@@ -26,14 +26,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="80"
-        android:src="@drawable/barcode" />
+        android:contentDescription="Display Image"
+        android:src="@android:drawable/btn_star_big_off" />
 
     <Button
         android:id="@+id/start_scann"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="Button" />
+        android:text="@string/button_mainActivity_scan_text" />
 
 
 

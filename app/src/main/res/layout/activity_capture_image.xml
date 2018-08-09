@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:contentDescription="This is instruction text"
         android:text="@string/textView_CaptureImage_Instructions"
         android:textSize="@dimen/textSize_CaptureImage_TextView"
         tools:layout_editor_absoluteX="181dp"
@@ -25,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="80"
+        android:contentDescription="Captured image"
         android:src="@drawable/common_google_signin_btn_icon_dark" />
 
     <LinearLayout
@@ -38,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/button_CaptureImage_Take_Photo_displaytext"
             android:textSize="@dimen/textSize_CaptureImage_Buttons" />
 
@@ -46,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/button_CaptureImage_Scan_Photo_displaytext"
             android:textSize="@dimen/textSize_CaptureImage_Buttons" />
 

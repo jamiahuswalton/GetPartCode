@@ -1,9 +1,9 @@
 <resources>
+    <!--Text for Main Activity-->
     <string name="app_name">GetPartCode</string>
     <string name="instruction_text">Click to Find Get Code</string>
-    <string name="Text_for_find_code_button">Start!</string>
-    <string name="title_activity_show_results">ShowResultsActivity</string>
     <string name="title_activity_start_screen">StartScreenActivity</string>
+    <string name="button_mainActivity_scan_text">Scan</string>
 
     <!--Text for Start Screen Activity-->
     <string name="textView_StartScreenActivity_Welcome">Welcome! Lets Start reading QR Codes!</string>

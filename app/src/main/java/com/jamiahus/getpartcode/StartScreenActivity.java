@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class StartScreenActivity extends Activity {
 
-    Button startQrCodeButton;
+    private Button startQrCodeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -13,12 +13,9 @@ import android.widget.Toast;
 
 public class CaptureImageActivity extends Activity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView displayImage;
-    Bitmap imageBitmap;
-
-    private Button takePhoto;
-    private Button scanPhoto;
+    private Bitmap imageBitmap;
 
     public static final String UPLOAD_IMAGE_EXTRA_NAME = "UploadImage";
 
@@ -29,7 +26,7 @@ public class CaptureImageActivity extends Activity {
 
         displayImage = findViewById(R.id.imageView_Captured_Image);
 
-        takePhoto = findViewById(R.id.button_takePhoto);
+        Button takePhoto = findViewById(R.id.button_takePhoto);
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +35,7 @@ public class CaptureImageActivity extends Activity {
             }
         });
 
-        scanPhoto = findViewById(R.id.button_scanPhoto);
+        Button scanPhoto = findViewById(R.id.button_scanPhoto);
         scanPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +50,7 @@ public class CaptureImageActivity extends Activity {
                     startActivity(startQRCodeActivity);
                 } else {
                     String message = "Image did not load correctly, please try taking another photo.";
-                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -72,10 +69,11 @@ public class CaptureImageActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
             Bundle extras = data.getExtras();
+            assert extras != null;
             imageBitmap = (Bitmap) extras.get("data");
             if (isImageNull(imageBitmap)){
                 String message = "Image did not load correctly, please try taking another photo.";
-                Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();
             }
             displayImage.setImageBitmap(imageBitmap);
         }
