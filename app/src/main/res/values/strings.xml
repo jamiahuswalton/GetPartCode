@@ -1,16 +1,19 @@
 <resources>
     <string name="app_name">Get Part Code</string>
     <!--Text for Main Activity-->
+    <string name="activity_name_main_activity">Process</string>
     <string name="instruction_text">Click to Extract Coede Information</string>
     <string name="title_activity_start_screen">StartScreenActivity</string>
     <string name="button_mainActivity_scan_text">Scan</string>
 
     <!--Text for Start Screen Activity-->
+    <string name="activity_name_start_screen">Introduction</string>
     <string name="textView_StartScreenActivity_Welcome">Welcome! Lets Start reading QR Codes!</string>
     <string name="button_StartScreenActivity_Start_QR_Code_Activity">Start Scaning!</string>
     <string name="title_activity_capture_image">CaptureImageActivity</string>
 
     <!--Text for Capture Image Activity-->
+    <string name="activity_name_capture_image">Capture Image</string>
     <string name="textView_CaptureImage_Instructions">Capture an image.</string>
     <string name="button_CaptureImage_Take_Photo_displaytext">Take Photo</string>
     <string name="button_CaptureImage_Scan_Photo_displaytext">Scan Photo</string>
